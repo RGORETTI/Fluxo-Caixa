@@ -1,109 +1,138 @@
-📦 Fluxo_Caixa - API
+
+# 📦 Fluxo_Caixa - API
+
 Projeto de uma API para controle de fluxo de caixa, com lançamentos financeiros diários e previsão dos próximos 30 dias.
 
-🛠️ Tecnologias Utilizadas
-ASP.NET Core 8
+---
 
-Docker
+## 🚀 Tecnologias Utilizadas
 
-Docker Compose
+- ASP.NET Core 8
+- Docker
+- Docker Compose
+- Swagger (OpenAPI) para documentação
+- xUnit para testes unitários
+- GitHub Actions para CI/CD ✅
 
-Swagger (OpenAPI) para documentação
+---
 
-xUnit para testes unitários
+## 📋 Pré-requisitos
 
-📋 Pré-requisitos
-Docker instalado
+- Docker instalado
+- Docker Compose instalado
+- Windows (ou ajuste dos scripts .bat para Unix, se necessário)
 
-Docker Compose instalado
+---
 
-Windows (ou ajuste dos scripts .bat para Unix, se necessário)
+## 🚀 Como rodar o projeto
 
-🚀 Como rodar o projeto
 Clone o repositório:
 
-bash
-Copiar
-Editar
+```bash
 git clone https://github.com/RGORETTI/Fluxo_Caixa.git
+```
+
 Acesse a pasta raiz do projeto:
 
-bash
-Copiar
-Editar
+```bash
 cd Fluxo_Caixa
-📂 Buildar e subir os containers
+```
+
+### 📂 Buildar e subir os containers
+
 Execute o script:
 
-bash
-Copiar
-Editar
+```bash
 start-container.bat
+```
+
 Ou manualmente via Docker Compose:
 
-bash
-Copiar
-Editar
+```bash
 docker-compose up -d
+```
+
 A aplicação ficará disponível em:
+
 ➡️ http://localhost:5000/swagger
 
-🛑 Parar os containers
+### 🛑 Parar os containers
+
 Execute:
 
-bash
-Copiar
-Editar
+```bash
 stop-container.bat
+```
+
 Ou manualmente:
 
-bash
-Copiar
-Editar
+```bash
 docker-compose down
-♻️ Rebuildar os containers (após alterações no código)
+```
+
+### ♻️ Rebuildar os containers (após alterações no código)
+
 Execute:
 
-bash
-Copiar
-Editar
+```bash
 rebuild-container.bat
+```
+
 Ou manualmente:
 
-bash
-Copiar
-Editar
+```bash
 docker-compose down
 docker rmi fluxo-caixa-fluxo-caixa-api
 docker-compose up --build -d
-📑 Documentação da API
-Acesse pelo navegador:
+```
 
-http://localhost:5000/swagger
+---
 
-🧪 Testes
-Os testes unitários estão disponíveis no projeto FluxoCaixa.Tests.
+## 📑 Documentação da API
 
-Para rodar:
+Acesse:
 
-Abra o Visual Studio
+➡️ http://localhost:5000/swagger
 
-Execute os testes pelo Test Explorer
+---
 
-📜 Regras de Negócio Implementadas
-Não é permitido lançamentos no passado.
+## 🧪 Testes Automatizados
 
-Tipo de lançamento aceito: Recebimento (1) ou Pagamento (2).
+O projeto possui testes unitários com **xUnit**, localizados no repositório [FluxoCaixa.Tests](https://github.com/RGORETTI/FluxoCaixa.Tests).
 
-Saldo negativo permitido até -20.000,00:
+Repositório de testes:  
+➡️ [https://github.com/RGORETTI/FluxoCaixa.Tests](https://github.com/RGORETTI/FluxoCaixa.Tests)
 
-Pagamentos não são permitidos se saldo ultrapassar o limite.
+Para rodar localmente:
 
-Recebimentos são sempre permitidos (mesmo com saldo negativo).
+- Abra o Visual Studio
+- Execute os testes pelo **Test Explorer**
 
-Previsão do fluxo de caixa para os próximos 30 dias.
+---
 
-Cálculo de posição do dia (aumento ou queda percentual) comparado ao dia anterior.
+## ⚙️ Pipeline de Integração Contínua (CI/CD)
 
-✍️ Autor
-Rafael Goretti (RGORETTI)
+O projeto possui pipeline automático usando **GitHub Actions**:
+- Build da aplicação
+- Execução dos testes automatizados
+- Validação automática em cada `push` ou `pull request`
+
+Você pode acompanhar na aba [Actions](https://github.com/RGORETTI/Fluxo-Caixa/actions).
+
+---
+
+## 📜 Regras de Negócio Implementadas
+
+- Não é permitido lançamentos no passado.
+- Tipo de lançamento aceito: **Recebimento (1)** ou **Pagamento (2)**.
+- Saldo negativo permitido até **-20.000,00**:
+  - Pagamentos são bloqueados se ultrapassar o limite.
+  - Recebimentos são sempre permitidos.
+- Previsão do fluxo de caixa para os próximos 30 dias.
+- Cálculo de posição do dia (variação percentual em relação ao saldo anterior).
+
+---
+
+## ✍️ Autor
+
+Rafael Goretti De Deus ([RGORETTI](https://github.com/RGORETTI))
