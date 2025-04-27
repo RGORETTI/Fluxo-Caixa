@@ -21,11 +21,11 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restaurar dependências
-      run: dotnet restore Fluxo_Caixa/Fluxo_Caixa.csproj
+      run: dotnet restore ./Fluxo_Caixa.csproj
 
     - name: Buildar a solução
-      run: dotnet build Fluxo_Caixa/Fluxo_Caixa.csproj --no-restore
+      run: dotnet build ./Fluxo_Caixa.csproj --no-restore
 
     - name: Rodar Testes
-      run: dotnet test Fluxo_Caixa/Fluxo_Caixa.csproj --no-build --verbosity normal
+      run: dotnet test ./Fluxo_Caixa.csproj --no-build --verbosity normal
 
