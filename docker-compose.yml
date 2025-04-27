@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  fluxo-caixa-api:
+    build:
+      context: .
+    container_name: fluxo-caixa-container
+    ports:
+      - "5000:8080"
