@@ -2,6 +2,8 @@
 using System.Reflection;
 using FluxoCaixa.Repositories;
 using FluxoCaixa.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,11 @@ builder.WebHost.ConfigureKestrel(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// 🔥 Só adiciona Swagger se não for "Testing"
+// Configuração do FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>(); 
+
+// Swagger (exceto para ambiente de testes)
 if (!builder.Environment.IsEnvironment("Testing"))
 {
     builder.Services.AddSwaggerGen(options =>
@@ -28,14 +34,14 @@ if (!builder.Environment.IsEnvironment("Testing"))
 
 // Injeção de dependências
 builder.Services.AddScoped<ILancamentoRepository, LancamentoRepository>();
-builder.Services.AddScoped<FluxoCaixaService>();
+builder.Services.AddScoped<IFluxoCaixaService, FluxoCaixaService>();
 
 var app = builder.Build();
 
 // Pipeline HTTP
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
-    if (!app.Environment.IsEnvironment("Testing")) // 🔥 Só ativa Swagger fora de Testing
+    if (!app.Environment.IsEnvironment("Testing"))
     {
         app.UseSwagger();
         app.UseSwaggerUI(options =>

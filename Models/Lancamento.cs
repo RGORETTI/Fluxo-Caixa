@@ -5,7 +5,7 @@ namespace FluxoCaixa.Models
     public class Lancamento
     {
         [Required]
-        public DateTime DataDeLancamento { get; set; }
+        public DateTime Data { get; set; } 
 
         [Required]
         public TipoLancamento TipoDeLancamento { get; set; }
@@ -27,6 +27,6 @@ namespace FluxoCaixa.Models
 
      
         [Required]
-        public decimal ValorDoLancamento { get; set; }
+        public decimal Valor { get; set; }
     }
 }

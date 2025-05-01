@@ -11,9 +11,9 @@ namespace FluxoCaixa.Controllers
     public class LancamentosController : ControllerBase
     {
         private readonly ILancamentoRepository _repository;
-        private readonly FluxoCaixaService _fluxoCaixaService;
+        private readonly IFluxoCaixaService _fluxoCaixaService;
 
-        public LancamentosController(ILancamentoRepository repository, FluxoCaixaService fluxoCaixaService)
+        public LancamentosController(ILancamentoRepository repository, IFluxoCaixaService fluxoCaixaService)
         {
             _repository = repository;
             _fluxoCaixaService = fluxoCaixaService;
@@ -22,22 +22,21 @@ namespace FluxoCaixa.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] LancamentoDto lancamentoDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            // Se chegou aqui, FluentValidation já validou o DTO
 
             var lancamento = new Lancamento
             {
-                DataDeLancamento = lancamentoDto.DataDeLancamento,
+                Data = lancamentoDto.Data,
                 TipoDeLancamento = (TipoLancamento)lancamentoDto.TipoDeLancamento,
                 Descricao = lancamentoDto.Descricao,
                 Conta = lancamentoDto.Conta,
                 Banco = lancamentoDto.Banco,
                 TipoDeConta = lancamentoDto.TipoDeConta,
                 CpfCnpj = lancamentoDto.CpfCnpj,
-                ValorDoLancamento = lancamentoDto.ValorDoLancamento
+                Valor = lancamentoDto.Valor
             };
 
-            if (!_fluxoCaixaService.PodeLancarComNovoValor(lancamento, out var motivo))
+            if (!_fluxoCaixaService.ValidarLancamento(lancamento, out var motivo))
                 return BadRequest(new { erro = motivo });
 
             _repository.Adicionar(lancamento);
