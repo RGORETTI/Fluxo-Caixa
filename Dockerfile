@@ -1,24 +1,26 @@
-# Usa imagem base oficial do .NET para build
+# Etapa 1: build da aplicação
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copia apenas o projeto principal
-COPY Fluxo_Caixa.csproj ./
+# Copia o projeto principal e restaura dependências
+COPY ["Fluxo_Caixa.csproj", "./"]
 RUN dotnet restore
 
-# Copia todo o restante do projeto principal (sem .sln, sem projeto de teste)
-COPY . ./
+# Copia todos os arquivos da solução (exceto testes, se for o caso)
+COPY . .
 
-# Ajuste aqui: publica apenas o csproj do projeto principal
-RUN dotnet publish Fluxo_Caixa.csproj -c Release -o out
+# Publica apenas o projeto principal
+RUN dotnet publish "Fluxo_Caixa.csproj" -c Release -o /app/publish
 
-# Usa imagem base oficial do .NET para runtime
+# Etapa 2: runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
 
-# Expõe a porta 80
+# Copia os arquivos publicados
+COPY --from=build /app/publish .
+
+# Expõe porta padrão para aplicações web
 EXPOSE 80
 
-# Comando para iniciar a aplicação
+# Comando de entrada
 ENTRYPOINT ["dotnet", "Fluxo_Caixa.dll"]

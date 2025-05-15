@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxo_Caixa", "Fluxo_Caixa.csproj", "{CE737401-63AF-48FC-B320-0C6BA6EE867F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.Tests", "..\FluxoCaixa\FluxoCaixa.Tests.csproj", "{C0887A7F-AD0F-4C2F-BB7A-66C68141B221}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa", "..\FluxoCaixa\FluxoCaixa.csproj", "{6029B7F4-29BC-452A-9B1D-FF068F546917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{CE737401-63AF-48FC-B320-0C6BA6EE867F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE737401-63AF-48FC-B320-0C6BA6EE867F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE737401-63AF-48FC-B320-0C6BA6EE867F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0887A7F-AD0F-4C2F-BB7A-66C68141B221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0887A7F-AD0F-4C2F-BB7A-66C68141B221}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0887A7F-AD0F-4C2F-BB7A-66C68141B221}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0887A7F-AD0F-4C2F-BB7A-66C68141B221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6029B7F4-29BC-452A-9B1D-FF068F546917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6029B7F4-29BC-452A-9B1D-FF068F546917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6029B7F4-29BC-452A-9B1D-FF068F546917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6029B7F4-29BC-452A-9B1D-FF068F546917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

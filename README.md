@@ -1,4 +1,3 @@
-
 # 📦 Fluxo_Caixa - API
 
 Projeto de uma API para controle de fluxo de caixa, com lançamentos financeiros diários e previsão dos próximos 30 dias.
@@ -8,6 +7,7 @@ Projeto de uma API para controle de fluxo de caixa, com lançamentos financeiros
 ## 🚀 Tecnologias Utilizadas
 
 - ASP.NET Core 8
+- MongoDB (via container Docker)
 - Docker
 - Docker Compose
 - Swagger (OpenAPI) para documentação
@@ -20,7 +20,7 @@ Projeto de uma API para controle de fluxo de caixa, com lançamentos financeiros
 
 - Docker instalado
 - Docker Compose instalado
-- Windows (ou ajuste dos scripts .bat para Unix, se necessário)
+- Windows (ou ajuste dos scripts `.bat` para Unix, se necessário)
 
 ---
 
@@ -52,11 +52,13 @@ Ou manualmente via Docker Compose:
 docker-compose up -d
 ```
 
-A aplicação ficará disponível em:
+A aplicação e o MongoDB serão inicializados automaticamente.
 
-➡️ http://localhost:5000/swagger
+➡️ Acesse a API em: [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
-### 🛑 Parar os containers
+---
+
+## 🛑 Parar os containers
 
 Execute:
 
@@ -70,7 +72,9 @@ Ou manualmente:
 docker-compose down
 ```
 
-### ♻️ Rebuildar os containers (após alterações no código)
+---
+
+## ♻️ Rebuildar os containers (após alterações no código)
 
 Execute:
 
@@ -88,20 +92,26 @@ docker-compose up --build -d
 
 ---
 
+## 🗃️ Banco de Dados (MongoDB)
+
+- O MongoDB roda automaticamente via container Docker.
+- Você **não precisa instalar o MongoDB manualmente**.
+- Os dados são persistidos dentro do container (volume pode ser adicionado futuramente).
+- Para visualizar os dados, acesse o painel do [MongoDB Atlas](https://cloud.mongodb.com) ou conecte-se usando uma ferramenta como o **MongoDB Compass**.
+
+---
+
 ## 📑 Documentação da API
 
 Acesse:
 
-➡️ http://localhost:5000/swagger
+➡️ [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
 ---
 
 ## 🧪 Testes Automatizados
 
 O projeto possui testes unitários com **xUnit**, localizados no repositório [FluxoCaixa.Tests](https://github.com/RGORETTI/FluxoCaixa.Tests).
-
-Repositório de testes:  
-➡️ [https://github.com/RGORETTI/FluxoCaixa.Tests](https://github.com/RGORETTI/FluxoCaixa.Tests)
 
 Para rodar localmente:
 
@@ -136,5 +146,3 @@ Você pode acompanhar na aba [Actions](https://github.com/RGORETTI/Fluxo-Caixa/a
 ## ✍️ Autor
 
 Rafael Goretti De Deus ([RGORETTI](https://github.com/RGORETTI))
-
-# Atualização para disparar Actions

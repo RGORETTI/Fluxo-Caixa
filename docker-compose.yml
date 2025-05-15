@@ -4,6 +4,30 @@ services:
   fluxo-caixa-api:
     build:
       context: .
-    container_name: fluxo-caixa-container
+      dockerfile: Dockerfile
+    container_name: fluxo-caixa-api
     ports:
       - "5000:8080"
+    depends_on:
+      - mongo
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - fluxo-caixa-net
+
+  mongo:
+    image: mongo:6.0
+    container_name: fluxo-caixa-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - fluxo-caixa-net
+
+volumes:
+  mongo-data:
+
+networks:
+  fluxo-caixa-net:
+    driver: bridge

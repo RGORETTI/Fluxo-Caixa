@@ -1,11 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FluxoCaixa.Models
 {
     public class Lancamento
     {
+        [BsonId] // Informa ao MongoDB que esta propriedade é o _id
+        [BsonRepresentation(BsonType.ObjectId)] // Permite que seja tratado como string
+        public string Id { get; set; }
+
         [Required]
-        public DateTime DataDeLancamento { get; set; }
+        public DateTime Data { get; set; }
 
         [Required]
         public TipoLancamento TipoDeLancamento { get; set; }
@@ -25,8 +32,7 @@ namespace FluxoCaixa.Models
         [Required]
         public string CpfCnpj { get; set; }
 
-     
         [Required]
-        public decimal ValorDoLancamento { get; set; }
+        public decimal Valor { get; set; }
     }
 }
